@@ -94,15 +94,15 @@ Launches the test runner in the interactive watch mode.
 The app will be structured by features so components, styling, testing of a component would be next to each other.
 
 src  
-&nbsp; |  
+&nbsp; |    
 &nbsp; |-pages  
-&nbsp; |&nbsp; |-launches
+&nbsp; |&nbsp; |-launches  
 &nbsp; |  
 &nbsp; |-types  
 &nbsp; |  
 &nbsp; |-graphql  
 &nbsp; |&nbsp; |-graphql.ts  
-&nbsp; |
+&nbsp; |  
 &nbsp; |-testing  
 
 ## Testing
