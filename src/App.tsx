@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import LanuchList from "./pages/launches/LaunchList";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+        <h1>SpaceX Past Launches</h1>
+        <p className="description">
+          A list of Past Spacex Launches stating each mission name, rocket name,
+          date and time in UTC, and associated links.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <LanuchList />
     </div>
   );
 }

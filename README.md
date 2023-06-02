@@ -1,46 +1,123 @@
-# Getting Started with Create React App
+# SpaceX Past Launches Gallery
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Mission
 
-## Available Scripts
+Create a react web application, where on the home page it uses SpaceX’s GraphQL API (https://spacex-production.up.railway.app/) to fetch past launches (launchesPast) and display the following information about each launch:
 
-In the project directory, you can run:
+- Mission name
+- Date of the launch (in UTC)
+- Name of the rocket used
+- Link to article about the launch
+- Link to the video of the launch
 
-### `npm start`
+### Use Cases
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Currently, the user can only view the main page and scroll through the list of past launches. The user can also find related sources of information/video on each launch card.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[WIP] To be updated as the app is being developed further.
+
+## Preview
+
+![Home Page](./Assets/screenshots/mainPage.png)
+
+## Strategy
+
+An Iterative approach is used to implement this app, where an mvp is done first, then enhancements follow. Following is An idea of the development cycle.
+
+[Done]
+
+- Create a react app.
+- Create the main components.
+  - App => List => Card
+- Establish connection with API.
+- Add Tests
+- Document
+- Clean/Refactor Components.
+- Add UI Tweaks:
+  - Add description in header
+  - Display Date & time in UTC format.
+  - Add Rocket icon.
+
+[Next]
+
+- Add Pagination -> on Client Side
+- Add Sorting
+- Add Filters
+
+## Implementation
+
+The home page dom tree contains the following:
+
+- Main app component with header section
+- Launches list
+- Launch cards
+
+### Fetching API Data
+
+An ApolloClient is used to connect and query the graphQL API. The main query neded to fetch past launches data is
+
+```graphql
+# src/app/launch-list/launch-list.graphql
+
+query LaunchesPast {
+  launchesPast {
+    mission_name
+    launch_date_utc
+    rocket {
+      rocket_name
+    }
+    links {
+      article_link
+      video_link
+    }
+  }
+}
+```
+
+## Usage
+
+### `npm install`
+
+Installs dependencies needed for the application.
+
+### `npm run`
+
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
-### `npm run build`
+## Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app will be structured by features so components, styling, testing of a component would be next to each other.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+src  
+&nbsp; |  
+&nbsp; |-launches  
+&nbsp; |  
+&nbsp; |-types  
+&nbsp; |  
+&nbsp; |-graphql  
+&nbsp; |&nbsp; |-graphql.ts  
+&nbsp; |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Testing
 
-### `npm run eject`
+_Tested:_ all components rendering successfully with no errors.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+An apollo client with mock objects is created to fake the api.  
+Since there is not really any user interaction for now, no further tests were needed.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Caveats
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Assuming the app would be used in different timezones, dates displayed on the homepage are in UTC format. This ensures users can reference past events in same timezone which would be a consistent experience for users across different timezones.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Future Improvements
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Add Pagination.
+- Sort launches By launch date in a descending order to make recent events easily accessible, assuming users would be more interested to check for recent launches.
+- Add select filters for rocket name, single launch date, and range launch date.
+- Add search filters for mission name and rocket name.
+- Add GraphQL introspection to speed the process of updating the schema in the future.

@@ -1,0 +1,7 @@
+.flex-layout {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 24px;
+}
