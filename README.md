@@ -95,13 +95,15 @@ The app will be structured by features so components, styling, testing of a comp
 
 src  
 &nbsp; |  
-&nbsp; |-launches  
+&nbsp; |-pages  
+&nbsp; |&nbsp; |-launches
 &nbsp; |  
 &nbsp; |-types  
 &nbsp; |  
 &nbsp; |-graphql  
 &nbsp; |&nbsp; |-graphql.ts  
 &nbsp; |
+&nbsp; |-testing  
 
 ## Testing
 
